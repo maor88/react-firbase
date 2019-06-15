@@ -14,15 +14,10 @@ class App extends React.Component {
     this.database = this.app.database().ref().child('names');
     this.state = {
       inputval: "",
-      names:"fff"
     }
   }
 
   componentDidMount() {
-    this.namesRef = this.base.syncState('names',{
-      context:this,
-      state: 'names'
-    })
   }
 
   componentWillUnmount() {
@@ -30,7 +25,7 @@ class App extends React.Component {
   }
 
   handleSubmit = () =>  {
-    this.base.post( 'name' , {data: {name: this.state.inputval}} )
+    this.base.post( 'names' , {data: this.state.inputval} )
     this.setState({
       inputval:""
     })
@@ -51,7 +46,6 @@ class App extends React.Component {
             <input onChange = {this.onChangeHundle} value = {this.state.inputval} type="text" name="name" />
           </label>
           <input onClick ={this.handleSubmit} type="submit" value="Submit" />
-          {/* <div className={"names"}> {this.state.names}</div> */}
         </header>
       </div>
     );
